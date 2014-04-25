@@ -3,12 +3,18 @@
     "version": "0.0.1",
     "dependencies": {
         "nodemailer": "latest",
-        "express": "latest"
+        "express": "latest",
+	"compression":"latest",
+	"morgan":"latest",
+	"method-override":"latest",
+	"body-parser":"latest",
+	"cookie-parser":"latest"
     },
     "devDependencies": {
         "grunt": "~0.4.4",
         "grunt-contrib-jshint": "~0.9.2",
-        "matchdep": "~0.3.0"
+        "matchdep": "~0.3.0",
+	"compress":"0.1.9"
     },
     "engines": {
         "node": "0.10.x"

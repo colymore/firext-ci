@@ -14,12 +14,13 @@
 var express = require('express');
 var server = express();
 var build = require('./build');
-
-server.use(express.logger());
-server.use(express.compress());
-server.use(express.methodOverride());
-server.use(express.cookieParser());
-server.use(express.bodyParser());
+var logger = require('morgan');
+var compress = require('compression');
+server.use(logger);
+server.use(compress);
+server.use(require('method-override'));
+server.use(require('body-parser'));
+server.use(require('cookie-parser'));
 
 
 /**
