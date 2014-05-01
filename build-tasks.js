@@ -3,7 +3,7 @@ var androidVersionFile = require('./androidVersion'),
 
 var project = {
     name: "Firext",
-    repo: "https://colymore:21082108@bitbucket.org/colymore/firext.git"
+    repo: "https://colymore@bitbucket.org/colymore/firext.git"
 };
 
 /**
