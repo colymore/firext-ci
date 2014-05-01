@@ -49,7 +49,7 @@ module.exports = function (server) {
     };
 
     var getVersion = function (req, res) {
-        fs.readFile("../android/apk/version.txt", {encoding: "UTF8"}, function (err, data) {
+        fs.readFile("./android/apk/version.txt", {encoding: "UTF8"}, function (err, data) {
             var result = {
                 version: data
             };
