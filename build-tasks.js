@@ -3,11 +3,11 @@ var androidVersionFile = require('./androidVersion'),
 
 var project = {
     name: "Firext",
-    repo: "https://colymore@bitbucket.org/colymore/firext.git"
+    repo: "https://colymore:21082108@bitbucket.org/colymore/firext.git"
 };
 
 /**
- * Tareas para compilar gomez-gozalo
+ * Tareas para compilar
  * @param options Opciones de compilación
  * @param {string} options.buildDirectory - El directorio donde se hará la build.
  * @param {string} options.branch - La rama a compilar
