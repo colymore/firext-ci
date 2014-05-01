@@ -15,7 +15,8 @@ module.exports = function (options, callback) {
     var buildDirectory = 'builds/' + y + m + d + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + now.getMilliseconds();
     var tasks = require('./build-tasks')({
         buildDirectory: buildDirectory,
-        branch: options.branch
+        branch: options.branch,
+        name : options.name
     });
 
     run(tasks, function (err, stdout) {
