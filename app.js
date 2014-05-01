@@ -16,11 +16,15 @@ var server = express();
 var build = require('./build');
 var logger = require('morgan');
 var compress = require('compression');
-server.use(logger);
-server.use(compress);
-server.use(require('method-override'));
-server.use(require('body-parser'));
-server.use(require('cookie-parser'));
+var fs = require('fs');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+server.use(logger());
+server.use(compress());
+server.use(methodOverride());
+server.use(bodyParser());
+server.use(cookieParser());
 
 
 /**
@@ -81,6 +85,16 @@ server.post('/AndroidCIServer', function (req, res) {
     res.send();
 });
 
+server.get('/', function(req, res) {
+    res.render('Colymore.es', { title: 'Express' });
+});
+
+server.get('/firextapk',function(req,res){
+var apk = fs.readFileSync('./android/apk/Firext-release.apk');
+     	//res.writeHead(200, {'Content-Type': 'application/vnd.android.package-archive' });
+	res.attachment('Firext.apk');
+	res.end(apk, 'binary');
+});
 server.listen(8089);
 
 runBuild({
