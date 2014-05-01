@@ -43,7 +43,7 @@ module.exports = function (server) {
     };
 
     var getApk = function (req, res) {
-        var apk = fs.readFileSync('../android/apk/Firext-release.apk');
+        var apk = fs.readFileSync('./android/apk/Firext-release.apk');
         res.attachment('Firext.apk');
         res.end(apk);
     };
