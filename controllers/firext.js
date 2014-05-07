@@ -42,6 +42,15 @@ module.exports = function (server) {
         res.send();
     };
 
+    var getLog = function (req, res) {
+        fs.readFile("./output.log", {encoding: "UTF8"}, function (err, data) {
+            var result = {
+                log: data
+            };
+            res.send(result);
+        });
+    };
+
     var getApk = function (req, res) {
         var apk = fs.readFileSync('./android/apk/Firext-release.apk');
         res.attachment('Firext.apk');
@@ -60,5 +69,6 @@ module.exports = function (server) {
     server.post('/firext/generateRelease', generateRelease);
     server.get('/firext/getapk', getApk);
     server.get('/firext/getversion', getVersion);
+    server.get('/firext/getlog', getLog);
 
 };

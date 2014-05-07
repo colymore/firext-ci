@@ -20,8 +20,8 @@ function ExecShell(cmd, cwd) {
 ExecShell.prototype.run = function (callback) {
     "use strict";
 
-    console.log('Running ' + this.cmd);
-    console.log('on ' + this.cwd);
+    console.log('Running ' + this.cmd +'\r');
+    console.log('on ' + this.cwd +'\r');
     exec(this.cmd, {"cwd": this.cwd}, function (err, stdout) {
         console.log(stdout);
         callback(err, stdout);
