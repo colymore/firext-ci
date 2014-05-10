@@ -15,7 +15,6 @@ var mongoClient = mongodb.MongoClient;
 
 mongoClient.connect('mongodb://127.0.0.1/firext', function (err, db) {
     if (err) {
-        log.fatal(err);
         throw err;
     }
     require('./controllers/firext')(db, server);
