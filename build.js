@@ -5,7 +5,7 @@ var run = require('./run-tasks');
  * @param options
  * @param callback
  */
-module.exports = function (options, callback) {
+module.exports = function (db, options, callback) {
     "use strict";
 
     var now = new Date();
@@ -16,7 +16,7 @@ module.exports = function (options, callback) {
     var tasks = require('./build-tasks')({
         buildDirectory: buildDirectory,
         branch: options.branch,
-        name : options.name
+        name: options.name
     });
 
     run(tasks, function (err, stdout) {

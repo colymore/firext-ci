@@ -6,12 +6,6 @@ var project = {
     repo: "https://colymore@bitbucket.org/colymore/firext.git"
 };
 
-/**
- * Tareas para compilar
- * @param options Opciones de compilación
- * @param {string} options.buildDirectory - El directorio donde se hará la build.
- * @param {string} options.branch - La rama a compilar
- */
 module.exports = function (options) {
     "use strict";
 
@@ -27,15 +21,15 @@ module.exports = function (options) {
     };
 
     var copyApkToDeployDir = function (callback) {
-        new ExecShell('cp Firext/build/apk/Firext-release.apk ../../android/apk/' , buildDirectory).run(callback);
+        new ExecShell('cp Firext/build/apk/Firext-release.apk ../../android/apk/', buildDirectory).run(callback);
     };
 
     var generateAndroidVersionFile = function (callback) {
         androidVersionFile(buildDirectory + '/Firext/src/main/AndroidManifest.xml', "android/apk/", callback);
     };
 
-    var removeBuildDirectory = function (callback){
-        new ExecShell('rm -rf ../*' , buildDirectory).run(callback);
+    var removeBuildDirectory = function (callback) {
+        new ExecShell('rm -rf ../*', buildDirectory).run(callback);
     };
 
     return [
@@ -43,6 +37,6 @@ module.exports = function (options) {
         buildAndroid,
         copyApkToDeployDir,
         generateAndroidVersionFile,
-        removeBuildDirectory
+        removeBuildDirectory,
     ];
 };
