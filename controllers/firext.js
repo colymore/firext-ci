@@ -18,6 +18,7 @@ module.exports = function (db, server) {
 
     var generateRelease = function (req, res) {
         "use strict";
+        console.log("Llamada a generateRelease");
         console.log(req.body);
         var data = req.body.payload;
         var json = JSON.parse(data);
@@ -58,6 +59,8 @@ module.exports = function (db, server) {
     };
 
     var getLog = function (req, res) {
+        console.log("Llamada a getLog");
+
         fs.readFile("./output.log", {encoding: "UTF8"}, function (err, data) {
             var result = {
                 log: data
@@ -67,12 +70,16 @@ module.exports = function (db, server) {
     };
 
     var getApk = function (req, res) {
+        console.log("Llamada a getAPK");
+
         var apk = fs.readFileSync('./android/apk/Firext-release.apk');
         res.attachment('Firext.apk');
         res.end(apk);
     };
 
     var getVersion = function (req, res) {
+        console.log("Llamada a getVersion");
+
         fs.readFile("./android/apk/version.txt", {encoding: "UTF8"}, function (err, data) {
             var result = {
                 version: data
@@ -82,6 +89,7 @@ module.exports = function (db, server) {
     };
 
     var registerGcm = function (req, res, next) {
+        console.log("Llamada a registerGCM");
 
         var data = req.body;
 
