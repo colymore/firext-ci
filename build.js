@@ -5,7 +5,7 @@ var run = require('./run-tasks');
  * @param options
  * @param callback
  */
-module.exports = function (db, options, callback) {
+module.exports = function (options, callback) {
     "use strict";
 
     var now = new Date();

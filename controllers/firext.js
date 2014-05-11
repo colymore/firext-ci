@@ -1,8 +1,7 @@
 var build = require('../build');
 var fs = require('fs');
-var firextRepository = require('../repositories/firextRepository'),
-    gcm = require('../utils/gcm');
-var runBuild = function (db, params) {
+
+var runBuild = function (params) {
     "use strict";
 
     var pushData = params.pushData;
@@ -39,22 +38,7 @@ module.exports = function (db, server) {
             }
         };
 
-        runBuild(db, runParams);
-
-        var errorGcm = function (error) {
-            next(error);
-        };
-
-        var successGcm = function () {
-        };
-
-        firextRepository.getAll(db, function (docs) {
-            for (var i = 0; i < docs.length; i++) {
-                gcm(docs[i].gcmId, 1, successGcm, errorGcm);
-                console.log("GCM:" + docs[i].gcmId);
-            }
-            res.send();
-        });
+        runBuild(runParams);
         res.send()
     };
 
@@ -106,6 +90,7 @@ module.exports = function (db, server) {
 
         firextRepository.updateGcm(db, data.deviceId, data.regId, success, error);
     };
+
 
     server.put('/firext/gcm', registerGcm);
     server.post('/firext/generateRelease', generateRelease);

@@ -1,10 +1,15 @@
 var androidVersionFile = require('./androidVersion'),
     ExecShell = require('./exec-shell');
+var mongodb = require('mongodb');
+var mongoClient = mongodb.MongoClient;
+var firextRepository = require('./repositories/firextRepository');
+var gcm = require('./utils/gcm');
 
 var project = {
     name: "Firext",
     repo: "https://colymore@bitbucket.org/colymore/firext.git"
 };
+
 
 module.exports = function (options) {
     "use strict";
@@ -32,11 +37,35 @@ module.exports = function (options) {
         new ExecShell('rm -rf ../*', buildDirectory).run(callback);
     };
 
+    var notify = function () {
+        mongoClient.connect('mongodb://127.0.0.1/firext', function (err, db) {
+            if (err) {
+                throw err;
+            }
+
+            var errorGcm = function (error) {
+                next(error);
+            };
+
+            var successGcm = function () {
+            };
+
+
+            firextRepository.getAll(db, function (docs) {
+                for (var i = 0; i < docs.length; i++) {
+                    gcm(docs[i].gcmId, 1, successGcm, errorGcm);
+                    console.log("GCM:" + docs[i].gcmId);
+                }
+            });
+        });
+    };
+
     return [
         gitClone,
         buildAndroid,
         copyApkToDeployDir,
         generateAndroidVersionFile,
         removeBuildDirectory,
+        notify
     ];
 };
