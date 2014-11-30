@@ -17,24 +17,13 @@ module.exports = function (db, server) {
 
     var generateRelease = function (req, res) {
         "use strict";
+        fs.truncate('./output.log', 0, function(){console.log('done')});
         console.log("Llamada a generateRelease");
         console.log(req.body);
-        var data = req.body.payload;
-        var json = JSON.parse(data);
-        var author = json.user;
-        var branch = json.commits[0].branch;
-        var messages = [];
-
-        json.commits.forEach(function (c) {
-            messages.push(c.message);
-        });
-
+        var branch = 'master'
         var runParams = {
             pushData: {
-                as: false,
-                branch: branch,
-                author: author,
-                messages: []
+                branch: branch
             }
         };
 

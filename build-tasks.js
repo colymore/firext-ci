@@ -7,7 +7,7 @@ var gcm = require('./utils/gcm');
 
 var project = {
     name: "Firext",
-    repo: "https://colymore@bitbucket.org/colymore/firext.git"
+    repo: "https://github.com/colymore/firext-android.git"
 };
 
 
@@ -22,11 +22,11 @@ module.exports = function (options) {
     };
 
     var buildAndroid = function (callback) {
-        new ExecShell('gradle assembleRelease', buildDirectory).run(callback);
+        new ExecShell('./gradlew assembleRelease', buildDirectory).run(callback);
     };
 
     var copyApkToDeployDir = function (callback) {
-        new ExecShell('cp Firext/build/apk/Firext-release.apk ../../android/apk/', buildDirectory).run(callback);
+        new ExecShell('cp Firext/Firext/build/outputs/apk/Firext-release.apk ../../android/apk/', buildDirectory).run(callback);
     };
 
     var generateAndroidVersionFile = function (callback) {

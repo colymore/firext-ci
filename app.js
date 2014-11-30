@@ -12,7 +12,6 @@ server.use(express.static(path.join(__dirname, 'html')));
 
 var mongoClient = mongodb.MongoClient;
 
-
 mongoClient.connect('mongodb://127.0.0.1/firext', function (err, db) {
     if (err) {
         throw err;
