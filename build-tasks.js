@@ -7,7 +7,7 @@ var gcm = require('./utils/gcm');
 
 var project = {
     name: "Firext",
-    repo: "https://github.com/colymore/firext-android.git"
+    repo: "https://colymore:f1r3f0x3r@github.com/colymore/firext-android.git"
 };
 
 
@@ -18,7 +18,7 @@ module.exports = function (options) {
     var branch = options.branch !== undefined ? options.branch : 'master';
 
     var gitClone = function (callback) {
-        new ExecShell('git clone -b ' + branch + ' ' + project.repo + ' ' + buildDirectory, '.').run(callback);
+        new ExecShell('git clone ' + project.repo + ' ' + buildDirectory, '.').run(callback);
     };
 
     var buildAndroid = function (callback) {
@@ -27,6 +27,7 @@ module.exports = function (options) {
 
     var copyApkToDeployDir = function (callback) {
         new ExecShell('cp Firext/Firext/build/outputs/apk/Firext-release.apk ../../android/apk/', buildDirectory).run(callback);
+        new ExecShell('cp Firext/Firext/build/outputs/apk/Firext-debug.apk ../../android/apk/', buildDirectory).run(callback);
     };
 
     var generateAndroidVersionFile = function (callback) {
